@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MyIndex</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GVO Homepage</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Placeholder</h1>
   <button onclick="testFunction()">Click Me</button>
 
-  <script src="script.js"></script>
+  <form id="userIDForm">
+    <p>Welcome to online visual field test.</p>
+    <p>This prototype is intended for research and education. </p>
+    <p>This is not a medical exam. It is not intended for use in the diagnosis, treatment or prevention of diseases.</p>
+    <p>Please identify yourself:</p>
+    <p></p><br>
+
+    <H3>Who are you?</H3>
+    <p>(for testing purpose, put in anything)</p>
+
+    <label for="name">Your name:</label>
+    <input type="text" id="name" required><br><br>
+    <label>Your gender:</label>
+    <select id="gender" required>
+      <option value="">?</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other/I don't want to share</option>
+    </select><br><br>
+    <label>Your date of birth:</label>
+    <input type="date" id="dob" required><br><br>
+
+    <button disabled type="submit" id="userIDSubmit">Submit</button>
+
+  </form>
+
+  <form id="instructionContainer">
+    <H3>Instructions:</H3>
+    <p>Do not return to previous pages during the test.</p>
+    <p>Do not resize the windows.</p>
+    <p>Each visual field test takes less than 1 minute. You may take a break between tests. The entire process should take 3-5 minutes without breaks.</p>
+    <p>You will start with distance calibration, followed by visual field test of the right and left eyes. </p>
+    <p>For the distance calibrations, you will need a rope to measure distance with (a phone charger cord will do).</p>
+
+    <p>During a visual field test:</p>
+    <ul>
+        <li>Put on your corrective lenses or reading glasses.</li>
+        <li>Keep your head still.</li>
+        <li>Cover the eye that is not being tested (do not simply "close" the eye, see figure below), fixate the other eye on the yellow target at the center of the screen at all times.</li>
+        <li>Press spacebar everytime you see a stimulus (black dots).</li>
+        <div>
+            <img src = "coverEye.png">
+        </div>
+    </ul>
+    <p>A 'Show results' button will be displayed at the end. Click on this button to see the results and to proceed to next step. </p>
+
+    <p>Choose below which eye you wish to test. The same eye will be tested for all parts of this study.</p>
+    <p>When ready, <strong>tick the "ready" checkbox and then press spacebar</strong> to begin the practice round. The first stimulus will appear after a short delay. Press spacebar everytime you see a stimulus</p>
+
+    <p>Choose which eye to test:</p>
+    <input type="radio" name="testEye" id="leftEye" value="-1">
+    <label for="leftEye">Left eye</label>
+    <input type="radio" name="testEye" id="rightEye" value="1">
+    <label for="rightEye">Right eye</label>
+    <br>
+    <br>
+    <button disabled id="calibrationButton">To calibration</button>
+  </form>
+
+  <script src="index.js"></script>
 </body>
 </html>
