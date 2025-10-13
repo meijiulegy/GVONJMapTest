@@ -40,6 +40,75 @@ function showResults() {
   //const sectionWidth = resultDiagram.offsetWidth / numColumns; 
   //const sectionHeight = resultDiagram.offsetHeight / numRows;
 
+  //draw axis labels using myParsedMatrix[17][1] as reference for 15 degrees eccentric
+  const fiveDegreesX = (parseInt(myParsedMatrix[17][2]) - 50 ) / 3;
+  console.log(fiveDegreesX);
+  const fiveDegreesY = fiveDegreesX / (window.innerHeight/window.innerWidth);
+
+
+  
+  for (let i = -4; i <5; i++){
+      let currentX;
+      currentX = String(fiveDegreesX * i + 50) + "%"
+
+      const lijntje = document.createElement('div');
+      lijntje.classList.add('lijntje');
+      lijntje.style.width = "2px";
+      lijntje.style.height = "10px";
+      lijntje.style.top = "100%";
+      lijntje.style.left = currentX;
+      lijntje.style.transform = "translate(0%, -100%)";
+      resultDiagram.appendChild(lijntje);
+
+      const span = document.createElement('span');
+      span.textContent = String(i*5);
+      span.className = 'axisNumber';
+      span.style.top = "100%";
+      span.style.left = currentX;
+      span.style.transform = "translate(-50%, 50%)";
+      resultDiagram.appendChild(span);
+  }
+
+  for (let i = -3; i <4; i++){
+      let currentY;
+      currentY = String(fiveDegreesY * i + 50) + "%"
+
+      const lijntje = document.createElement('div');
+      lijntje.classList.add('lijntje');
+      lijntje.style.width = "10px";
+      lijntje.style.height = "2px";
+      lijntje.style.top = currentY;
+      lijntje.style.left = "0%";
+      //lijntje.style.transform = "translate(0%, -100%)";
+      resultDiagram.appendChild(lijntje);
+
+      const span = document.createElement('span');
+      span.textContent = String(-i*5);
+      span.className = 'axisNumber';
+      span.style.top = currentY;
+      span.style.left = "0%";
+      span.style.transform = "translate(-150%, -50%)";
+      resultDiagram.appendChild(span);
+  }
+  
+  const xAxisLabel = document.createElement('span');
+  xAxisLabel.textContent = "x (degree)";
+  xAxisLabel.className = 'axisNumber';
+  xAxisLabel.style.top = "100%";
+  xAxisLabel.style.left = "50%";
+  xAxisLabel.style.transform = "translate(-50%, 150%)";
+  resultDiagram.appendChild(xAxisLabel);
+
+  const yAxisLabel = document.createElement('span');
+  yAxisLabel.textContent = "y (degree)";
+  yAxisLabel.className = 'axisNumber';
+  yAxisLabel.style.top = "50%";
+  yAxisLabel.style.left = "0%";
+  //yAxisLabel.style.display = 'inline-block';
+  yAxisLabel.style.transform = "translate(-100%, -50%) rotate(-90deg)";
+  //yAxisLabel.style.transformOrigin = 'left top';
+  resultDiagram.appendChild(yAxisLabel);
+  
   for (let i = 0; i < 25; i++) {
       if (myParsedMatrix[i][0] === -1) {
         continue;

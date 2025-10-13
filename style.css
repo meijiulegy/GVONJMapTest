@@ -135,8 +135,20 @@
   height: 400px; 
   background-color: hsl(0, 0%, 100%); 
   position: relative;
+  margin-left: 100px;
   
   border: solid 2px hsl(0, 0%, 15%)
+}
+
+.lijntje {
+  position: absolute;
+  background-color: black;
+}
+
+.axisNumber{
+  position: absolute;
+  font-size: 15px;
+  color: black;
 }
 
 .section {

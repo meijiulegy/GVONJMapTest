@@ -3,7 +3,7 @@ let myStepCounter = JSON.parse(myStoredStepCounter);
 console.log('myStepCounter = ' + myStepCounter);
 const myStoredDataHandle = localStorage.getItem('myDataHandle');
 const myDataHandle = JSON.parse(myStoredDataHandle);
-let blindSpotX = myDataHandle[1][0];
+//let blindSpotX = myDataHandle[1][0];
 blindSpotX = 400; //for development
 //myDataHandle[0][2] = -1;//for development
 myStepCounter = 1; //for development 
@@ -13,7 +13,7 @@ const gvoStartDeley = 2000; //delay before 1st stimulus
 const acceptedResponseDeley = 1000; //response delayed after stimulus is shown must be < stimulusInterval - stimulusIntervalVariation
 const repGvo = 1; //not yet implemented
 const stimulusDuration = 200; //duration of a stimulus, default 200
-const stimulusInterval = 1500; //default 1500, base interval between consecutive stimuli
+const stimulusInterval = 200; //default 1500, base interval between consecutive stimuli
 const stimulusIntervalVariation = 200; //default 200, random deviation from the set interval
 const stimulusSize = 3; //goldmann size 1-5, default 3 = 0.43deg diameter, approximated at fixation point. 
 let myParsedMatrix;
