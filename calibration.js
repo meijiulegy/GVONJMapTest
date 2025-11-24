@@ -14,27 +14,37 @@ function openNewWindow() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    console.log(myDataHandle[1][0]);
+    console.log(myDataHandle[2][0]);
     const startGVOButton = document.getElementById("startGVO");
     const readyCheckbox = document.getElementById("ready");
-    if (myDataHandle[0][2] == -1) {
-        document.getElementById("chosenEye").innerHTML = 'When ready, cover your right eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
-    }else if(myDataHandle[0][2] == 1) {
-        document.getElementById("chosenEye").innerHTML = 'When ready, cover your left eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
-    }else{
-        document.getElementById("chosenEye").innerHTML = 'When ready, cover the eye that is not being tested, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
-    }
 
     document.getElementById('lineDiv').style.height = 0.2*window.innerWidth + 'px'
     document.getElementById('doubleArrow').style.width = 0.75*window.innerWidth + 'px';
     blindSpotX = Math.floor(0.75*0.268*window.innerWidth);
-    myDataHandle[1][0] = blindSpotX;
-    myDataHandle[2][0] = blindSpotX;
-    localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
+
+    if (myDataHandle[2][0] > 2) {
+        document.getElementById("chosenEye").innerHTML = 'When ready, cover your right eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.'; 
+    }else if (myDataHandle[0][2] == -1) {
+        document.getElementById("chosenEye").innerHTML = 'When ready, cover your right eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
+        myDataHandle[2][0] = blindSpotX;
+    }else if(myDataHandle[0][2] == 1) {
+        document.getElementById("chosenEye").innerHTML = 'When ready, cover your left eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
+        myDataHandle[1][0] = blindSpotX;
+    }else{
+        document.getElementById("chosenEye").innerHTML = 'When ready, cover your left eye, <strong>tick the "ready" checkbox and then press spacebar</strong> to start the test.';
+        myDataHandle[1][0] = blindSpotX;
+        myDataHandle[2][0] = blindSpotX;
+    }
+    
     console.log(myDataHandle);
-    console.log('blindSpotX = ' + blindSpotX);
+    console.log('OD = ' + myDataHandle[1][0]);
+    console.log('OS = ' + myDataHandle[2][0]);
     
     function buttonClicked(event) {
         //event.preventDefault();
+        localStorage.removeItem('myDataHandle');
+        localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
         openNewWindow();
     }
     

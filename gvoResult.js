@@ -2,12 +2,27 @@
  //parse stored data
 const myStoredDataHandle = localStorage.getItem('myDataHandle');
 const myDataHandle = JSON.parse(myStoredDataHandle);
+//localStorage.removeItem('myDataHandle');
 console.log(myDataHandle);
 
-const myStoredStepCounter = localStorage.getItem('myStepCounter');
-let myStepCounter = JSON.parse(myStoredStepCounter);
-myStepCounter = 1; //for developement
+//const myStoredStepCounter = localStorage.getItem('myStepCounter');
+//let myStepCounter = JSON.parse(myStoredStepCounter);
+//myStepCounter = 1; //for developement
 
+if (myDataHandle[1][0] == -1) {
+  myStepCounter = 1;
+  myDataHandle[1][0] = -2;
+  document.getElementById("description").innerHTML = 'Results right eye';
+} else if (myDataHandle[2][0] == -1) {
+  myStepCounter = 2;
+  myDataHandle[2][0] = -2;
+  document.getElementById("description").innerHTML = 'Results left eye';
+} else {
+
+}
+console.log('mystepcounter = ' + myStepCounter);
+myParsedMatrix = myDataHandle[myStepCounter][1];
+console.log(myParsedMatrix); 
 const resultCircleDiameter = "10px";
 const resultDiagramWidth = 600;
 let resultDiagramHeight = resultDiagramWidth * window.innerHeight/window.innerWidth; //change to = resultDiagramWidth for a square diagram
@@ -30,6 +45,7 @@ if (myStoredDataHandle) {
 } else {
   console.log("No GVO data found. You need to do the GVO first. See /gvo.html"); 
 }
+
 
 //devide the result diagram, then color the sections
 const resultDiagram = document.getElementById('resultDiagram');
@@ -160,7 +176,7 @@ function showResults() {
 function openNewWindow() { 
 
   window.open(
-      'endInstructions.html',
+      nextPage,
       'newwindow',
       `width=${screen.availWidth},height=${screen.availHeight},scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no`
   );
@@ -175,6 +191,17 @@ if (testCompleted == 4) {
   */
 
 showResults();
+localStorage.removeItem('myDataHandle');
+localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
+let nextPage;
+document.getElementById('instructionContainer').style.display = 'none';
+if (myDataHandle[2][0] > 0) {
+  nextButton.textContent = "To Left Eye";
+  nextPage = 'calibration.html';
+} else {
+  nextButton.textContent = "To End Instructions";
+  nextPage = 'endInstructions.html';
+}
 nextButton.disabled = false;
 nextButton.addEventListener('click', openNewWindow)
 localStorage.removeItem('myGvoMatrix');

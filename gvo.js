@@ -1,12 +1,32 @@
-const myStoredStepCounter = localStorage.getItem('myStepCounter');
-let myStepCounter = JSON.parse(myStoredStepCounter);
-console.log('myStepCounter = ' + myStepCounter);
+//const myStoredStepCounter = localStorage.getItem('myStepCounter');
+//let myStepCounter = JSON.parse(myStoredStepCounter);
+//console.log('myStepCounter = ' + myStepCounter);
 const myStoredDataHandle = localStorage.getItem('myDataHandle');
 const myDataHandle = JSON.parse(myStoredDataHandle);
-//let blindSpotX = myDataHandle[1][0];
-blindSpotX = 400; //for development
+
+let blindSpotX;
+let currentEye;
+/*  myDataHandle[x][0] > 0: blindspot stored, gvo to be ran
+    myDataHandle[x][0] = 0: don't run gvo for this eye 
+    myDataHandle[x][0] = -1: gvo currently being ran or complete, results not shown 
+    myDataHandle[x][0] = -2: gvo complete for this eye, results already shown 
+*/
+console.log(myDataHandle);
+if (myDataHandle[1][0] > 2) {
+    blindSpotX = myDataHandle[1][0];
+    currentEye = 1; //set current gvo for the right eye.
+    myDataHandle[1][0] = -1;
+} else if (myDataHandle[2][0] > 2) {
+    blindSpotX = myDataHandle[2][0];
+    currentEye = 2; //set current gvo for the left eye.
+    myDataHandle[2][0] = -1;
+} else {
+
+}
+
+//blindSpotX = 400; //for development
 //myDataHandle[0][2] = -1;//for development
-myStepCounter = 1; //for development 
+//myStepCounter = 1; //for development 
 console.log('blindSpotX at load = ' + blindSpotX); 
 
 const gvoStartDeley = 2000; //delay before 1st stimulus
@@ -149,7 +169,8 @@ function runGvo() {
                 //setPosition(myGvoMatrix[numRows][4][1],myGvoMatrix[numRows][4][2]); //for development, show blindspot at the end
                 //document.getElementById('stimulus').style.display = 'block';
                 generateResults();
-                myDataHandle[myStepCounter][1] = myGvoMatrix;
+                myDataHandle[currentEye][1] = myGvoMatrix;
+                localStorage.removeItem('myDataHandle');
                 localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
                 console.log(myDataHandle);
                 //myStepCounter +=1;

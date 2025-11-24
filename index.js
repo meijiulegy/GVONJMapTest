@@ -2,7 +2,7 @@ function testFunction() {
   alert("how do i do this again?");
 }
 
-localStorage.removeItem('myDataHandle');
+//localStorage.removeItem('myDataHandle');
 let myStepCounter = 0;
 let blindSpotX = screen.availWidth/4;
 console.log(window.innerWidth);
@@ -13,6 +13,7 @@ console.log('myStepCounter = ' + myStepCounter);
 console.log('myDataHandle = ' + myDataHandle);
 
 document.addEventListener("DOMContentLoaded", function () {
+  localStorage.removeItem('myDataHandle');
   const nameInput = document.getElementById("name");
   const dobInput = document.getElementById("dob");
   const genderSelect = document.getElementById("gender");
@@ -72,8 +73,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function registerTestEye(){
       myDataHandle[0][0] = blindSpotX;
       myDataHandle[0][2] = parseInt(testEye);
+      if (myDataHandle[0][2] == -1) {
+        myDataHandle[1][0] = 0;
+        myDataHandle[2][0] = 1;
+      }else if(myDataHandle[0][2] == 1) {
+        myDataHandle[1][0] = 1;
+        myDataHandle[2][0] = 0;
+      }else{
+        myDataHandle[1][0] = 1;
+        myDataHandle[2][0] = 1;
+      }
       localStorage.setItem('myStepCounter', JSON.stringify(myStepCounter));
       localStorage.setItem('blindSpotX', JSON.stringify(blindSpotX));
+      localStorage.removeItem('myDataHandle');
       localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
   }
 

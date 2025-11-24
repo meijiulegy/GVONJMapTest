@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const myStoredDataHandle = localStorage.getItem('myDataHandle');
+    localStorage.removeItem('myDataHandle');
     const myDataHandle = JSON.parse(myStoredDataHandle);
     const emailLink1 = document.getElementById('emailLink1');
     const emailLink2 = document.getElementById('emailLink2');
