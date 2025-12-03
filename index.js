@@ -13,7 +13,7 @@ console.log('myStepCounter = ' + myStepCounter);
 console.log('myDataHandle = ' + myDataHandle);
 
 document.addEventListener("DOMContentLoaded", function () {
-  localStorage.removeItem('myDataHandle');
+  //localStorage.removeItem('myDataHandle');
   const nameInput = document.getElementById("name");
   const dobInput = document.getElementById("dob");
   const genderSelect = document.getElementById("gender");
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
       localStorage.setItem('myStepCounter', JSON.stringify(myStepCounter));
       localStorage.setItem('blindSpotX', JSON.stringify(blindSpotX));
-      localStorage.removeItem('myDataHandle');
+      //localStorage.removeItem('myDataHandle');
       localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
   }
 

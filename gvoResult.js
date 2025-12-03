@@ -191,7 +191,7 @@ if (testCompleted == 4) {
   */
 
 showResults();
-localStorage.removeItem('myDataHandle');
+//localStorage.removeItem('myDataHandle');
 localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
 let nextPage;
 document.getElementById('instructionContainer').style.display = 'none';

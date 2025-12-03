@@ -170,7 +170,7 @@ function runGvo() {
                 //document.getElementById('stimulus').style.display = 'block';
                 generateResults();
                 myDataHandle[currentEye][1] = myGvoMatrix;
-                localStorage.removeItem('myDataHandle');
+                //localStorage.removeItem('myDataHandle');
                 localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
                 console.log(myDataHandle);
                 //myStepCounter +=1;

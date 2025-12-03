@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     function buttonClicked(event) {
         //event.preventDefault();
-        localStorage.removeItem('myDataHandle');
+        //localStorage.removeItem('myDataHandle');
         localStorage.setItem('myDataHandle', JSON.stringify(myDataHandle));
         openNewWindow();
     }
